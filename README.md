@@ -34,19 +34,25 @@ The system is composed of three main entities:
 To compile the project, use the following command (linking pthread and rt libraries is required):
 
 ```bash
-gcc main.c -o main -lpthread -lrt
+chmod +x avvia_progetto.sh
+./avvia_progetto.sh
 ```
 
-To run the simulation:
+To stop the simulation gracefully and ensure all resources (shared memory) are cleaned up:
+
+    1.Open a second terminal.
+    2.Find the PID of the Incrocio process (it is printed in the main terminal at startup).
+    3.Send the SIGTERM signal:
 
 ```bash
-./main
+kill -SIGTERM <PID_INCROCIO>
 ```
 
 ## 📂 Project Structure
 
 *   `main.c`: Contains the main logic, process creation, and IPC setup.
 *   `incrocio.h`: Header file containing helper functions for direction logic (`EstraiDirezione`, `GetNextCar`).
+*   `avvia_progetto.sh`: Script for compiling and running the project.
 *   `incrocio.txt`: Log file generated during runtime, recording intersection decisions.
 *   `auto.txt`: Log file generated during runtime, recording car movements.
 
